@@ -30,6 +30,24 @@ class JDK8211262Tests {
   }
   
   @Test
+  void germany() {
+    DecimalFormat format = (DecimalFormat) NumberFormat.getInstance(new Locale("de", "DE"));
+    format.applyPattern("#,##0.00");
+    
+    String formatted = format.format(new BigDecimal("1234567.8"));
+    assertEquals("1.234.567,80", formatted);
+  }
+  
+  @Test
+  void austria() {
+    DecimalFormat format = (DecimalFormat) NumberFormat.getInstance(new Locale("de", "AT"));
+    format.applyPattern("#,##0.00");
+    
+    String formatted = format.format(new BigDecimal("1234567.8"));
+    assertEquals("1.234.567,80", formatted);
+  }
+  
+  @Test
   void decimalFormatExplicit() {
     DecimalFormat format = (DecimalFormat) NumberFormat.getInstance(SWITZERLAND);
     format.applyPattern("#,##0.00");
